@@ -1,26 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void rev(int arr[], int size)
-{
-    for (int i = 0, j = size - 1; i < j; i++, j--)
-    {
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-}
-
 int main()
 {
-    int a[5] = {2, 3, 7, 4, 8};
-
-    rev(a, 5);
-
-    for (int k = 0; k < 5; k++)
+    int n;
+    cout << "Enter the length of string:";
+    cin >> n;
+    int arr[n];
+    unordered_map<int, int> mpp;
+    cout << "Enter the elements:";
+    for (int i = 0; i < n; i++)
     {
-        cout << a[k] << " ";
+        cin >> arr[i];
+        mpp[arr[i]]++;
     }
 
-    return 0;
+    for (auto it : mpp)
+    {
+        cout << it.first << "->" << it.second << endl;
+    }
+
+    int q;
+    cout << "Enter the number of number you want to find:";
+    cin >> q;
+    while (q--)
+    {
+        int number;
+        cout << "Enter the number:";
+        cin >> number;
+        cout << mpp[number] << " ";
+    }
 }
