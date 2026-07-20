@@ -1,58 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void selection_sort(int arr[], int n)
+{
+    for (int i = 0; i <= n - 2; i++)
+    {
+        int min = i;
+        for (int j = i; j <= n - 1; j++)
+        {
+            if (arr[j] < arr[min])
+            {   
+                min = j;
+            }
+        }
+        int temp = arr[min];
+        arr[min] = arr[i];
+        arr[i] = temp;
+    }
+}
+
 int main()
 {
     int n;
-    cout << "Enter the length of string:";
+    cout << "Enter the number of elements : ";
     cin >> n;
     int arr[n];
-    unordered_map<int, int> mpp;
-    cout << "Enter the elements:";
+    cout << "Enter the elements of the array: ";
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
-        mpp[arr[i]]++;
     }
-
-    for (auto it : mpp)
+    selection_sort(arr, n);
+    for (int i = 0; i < n; i++)
     {
-        cout << it.first << "->" << it.second << endl;
+       cout << arr[i] << " ";
     }
 
-    int max_freq = -1, max_element = -1;
-
-    for (auto it : mpp)
-    {
-        if (it.second > max_freq)
-        {
-            max_freq = it.second;
-            max_element = it.first;
-        }
-    }
-
-    int min_freq = INT_MAX, min_element = -1;
-
-    for (auto it : mpp)
-    {
-        if (it.second < min_freq)
-        {
-            min_freq = it.second;
-            min_element = it.first;
-        }
-    }
-
-    cout << "Max frequency element is :" << max_element << " " << "and it's freq is:" << max_freq << endl;
-    cout << "Min frequency element is :" << min_element << " " << "and it's freq is:" << min_freq << endl;
-
-    int q;
-    cout << "Enter the number of number you want to find:";
-    cin >> q;
-    while (q--)
-    {
-        int number;
-        cout << "Enter the number:" << endl;
-        cin >> number;
-        cout << mpp[number] << " ";
-    }
 }
